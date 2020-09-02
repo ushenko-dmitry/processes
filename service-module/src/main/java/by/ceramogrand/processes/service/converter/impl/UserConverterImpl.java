@@ -13,6 +13,7 @@ public class UserConverterImpl implements UserConverter {
 
     @Override
     public UserDTO getDTO(User user) {
+        if (user == null) return null;
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
         userDTO.setEmail(user.getEmail());
@@ -22,7 +23,11 @@ public class UserConverterImpl implements UserConverter {
 
     @Override
     public User getModel(UserDTO userDTO) {
-        return null;
+        User user = new User();
+        user.setId(userDTO.getId());
+        user.setEmail(userDTO.getEmail());
+        user.setPassword(userDTO.getPassword());
+        return user;
     }
 
     @Override
@@ -35,7 +40,11 @@ public class UserConverterImpl implements UserConverter {
     }
 
     @Override
-    public List<User> getModels(List<UserDTO> userDTOS) {
-        return null;
+    public List<User> getModels(List<UserDTO> userDTOs) {
+        List<User> users = new ArrayList<>();
+        for (UserDTO userDTO : userDTOs) {
+            users.add(getModel(userDTO));
+        }
+        return users;
     }
 }
