@@ -1,44 +1,26 @@
-package by.ceramogrand.processes.repository.model;
+package by.ceramogrand.processes.service.model;
 
-import javax.persistence.*;
+import by.ceramogrand.processes.repository.model.User;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "task")
-public class Task {
+public class TaskDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Long id;
 
-    @Column
     private String name;
-    @Column
     private String description;
 
-    @Column
     private Boolean complete;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "completed_by", nullable = true)
-    private User completedBy;
-    @Column(name = "date_completed", nullable = true)
+    private UserDTO completedBy;
     private LocalDateTime dateCompleted;
 
-    @Column
     private Boolean deleted;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "created_by")
-    private User createdBy;
-    @Column(name = "date_created")
+    private UserDTO createdBy;
     private LocalDate dateCreated;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "updated_by", nullable = true)
-    private User updatedBy;
-    @Column(name = "date_updated", nullable = true)
-    private LocalDate dateUpdated;
+    private UserDTO updatedBy;
 
     public Long getId() {
         return id;
@@ -72,11 +54,11 @@ public class Task {
         this.complete = complete;
     }
 
-    public User getCompletedBy() {
+    public UserDTO getCompletedBy() {
         return completedBy;
     }
 
-    public void setCompletedBy(User completedBy) {
+    public void setCompletedBy(UserDTO completedBy) {
         this.completedBy = completedBy;
     }
 
@@ -96,11 +78,11 @@ public class Task {
         this.deleted = deleted;
     }
 
-    public User getCreatedBy() {
+    public UserDTO getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(User createdBy) {
+    public void setCreatedBy(UserDTO createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -112,11 +94,11 @@ public class Task {
         this.dateCreated = dateCreated;
     }
 
-    public User getUpdatedBy() {
+    public UserDTO getUpdatedBy() {
         return updatedBy;
     }
 
-    public void setUpdatedBy(User updatedBy) {
+    public void setUpdatedBy(UserDTO updatedBy) {
         this.updatedBy = updatedBy;
     }
 
@@ -127,4 +109,8 @@ public class Task {
     public void setDateUpdated(LocalDate dateUpdated) {
         this.dateUpdated = dateUpdated;
     }
+
+    private LocalDate dateUpdated;
+
+
 }

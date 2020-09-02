@@ -10,17 +10,54 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="email" type="varchar(50)" >
+            <column name="email" type="varchar(50)">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="password" type="varchar(60)" >
+            <column name="password" type="varchar(60)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
 
         <insert tableName="user">
             <column name="email" value="admin@admin.com"/>
-            <column name="password" value="$2y$12$ZXU69.KDzo072nhyU4HxYOtxvSt1sRvCzmPnFSZmMKDG5S4Fmgebe"/><!--pass: admin-->
+            <column name="password" value="$2y$12$ZXU69.KDzo072nhyU4HxYOtxvSt1sRvCzmPnFSZmMKDG5S4Fmgebe"/>
         </insert>
+    </changeSet>
+
+    <changeSet id="2" author="dimaushenko@mail.ru">
+        <createTable tableName="task">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="deleted" type="boolean"/>
+
+            <column name="complete" type="boolean"/>
+            <column name="completed_by" type="int">
+                <constraints nullable="true" references="user(id)" foreignKeyName="FK_task_completed_user"/>
+            </column>
+            <column name="date_completed" type="TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="created_by" type="int">
+                <constraints primaryKey="true" references="user(id)" foreignKeyName="FK_task_created_by_user"/>
+            </column>
+            <column name="date_created" type="TIMESTAMP"/>
+
+            <column name="updated_by" type="int">
+                <constraints nullable="true" references="user(id)" foreignKeyName="FK_task_updated_by_user"/>
+            </column>
+            <column name="date_updated" type="TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+
+        </createTable>
     </changeSet>
 </databaseChangeLog>
