@@ -7,6 +7,7 @@ import by.ceramogrand.processes.service.converter.AddUserConverter;
 import by.ceramogrand.processes.service.converter.ConverterFacade;
 import by.ceramogrand.processes.service.converter.UserConverter;
 import by.ceramogrand.processes.service.model.AddUserDTO;
+import by.ceramogrand.processes.service.model.AppUser;
 import by.ceramogrand.processes.service.model.UserDTO;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -30,8 +31,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return null;
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.getUserByEmail(email);
+        UserConverter userConverter = converterFacade.getUserConverter();
+        UserDTO userDTO = userConverter.getDTO(user);
+
+        if (userDTO == null) {
+            throw new UsernameNotFoundException("User is not found");
+        }
+        AppUser appUser = new AppUser(userDTO);
+        return appUser;
     }
 
     @Override
@@ -44,6 +53,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO getUser(Long id) {
         User user = userRepository.findById(id);
+        UserConverter userConverter = converterFacade.getUserConverter();
+        return userConverter.getDTO(user);
+    }
+
+    @Override
+    public UserDTO getUserByEmail(String email) {
+        User user = userRepository.getUserByEmail(email);
         UserConverter userConverter = converterFacade.getUserConverter();
         return userConverter.getDTO(user);
     }
