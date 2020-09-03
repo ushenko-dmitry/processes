@@ -10,4 +10,8 @@ public interface ConverterFacade {
     TaskConverter getTaskConverter();
 
     AddTaskConverter getAddTaskConverter();
+
+    ProcessConverter getProcessConverter();
+
+    AddProcessConverter getAddProcessConverter();
 }

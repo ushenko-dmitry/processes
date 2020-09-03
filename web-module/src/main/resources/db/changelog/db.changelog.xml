@@ -60,4 +60,42 @@
 
         </createTable>
     </changeSet>
+
+    <changeSet id="add_process_table" author="dimaushenko@mail.ru">
+        <createTable tableName="process">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="deleted" type="boolean"/>
+
+            <column name="complete" type="boolean"/>
+            <column name="date_completed" type="TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="created_by" type="int">
+                <constraints primaryKey="true" references="user(id)" foreignKeyName="FK_process_created_by_user"/>
+            </column>
+            <column name="date_created" type="TIMESTAMP"/>
+
+            <column name="updated_by" type="int">
+                <constraints nullable="true" references="user(id)" foreignKeyName="FK_process_updated_by_user"/>
+            </column>
+            <column name="date_updated" type="TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <addColumn tableName="task">
+            <column name="process_id" type="int">
+                <constraints references="process(id)" foreignKeyName="FK_task_process"/>
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
