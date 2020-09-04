@@ -18,6 +18,9 @@ public class ConverterFacadeImpl implements ConverterFacade {
     private final TaskPatternConverter taskPatternConverter;
     private final AddTaskPatternConverter addTaskPatternConverter;
 
+    private final ProcessPatternConverter processPatternConverter;
+    private final AddProcessPatternConverter addProcessPatternConverter;
+
     public ConverterFacadeImpl(
             UserConverter userConverter,
             AddUserConverter addUserConverter,
@@ -26,7 +29,9 @@ public class ConverterFacadeImpl implements ConverterFacade {
             ProcessConverter processConverter,
             AddProcessConverter addProcessConverter,
             TaskPatternConverter taskPatternConverter,
-            AddTaskPatternConverter addTaskPatternConverter
+            AddTaskPatternConverter addTaskPatternConverter,
+            ProcessPatternConverter processPatternConverter,
+            AddProcessPatternConverter addProcessPatternConverter
     ) {
         this.userConverter = userConverter;
         this.addUserConverter = addUserConverter;
@@ -36,6 +41,8 @@ public class ConverterFacadeImpl implements ConverterFacade {
         this.addProcessConverter = addProcessConverter;
         this.taskPatternConverter = taskPatternConverter;
         this.addTaskPatternConverter = addTaskPatternConverter;
+        this.processPatternConverter = processPatternConverter;
+        this.addProcessPatternConverter = addProcessPatternConverter;
     }
 
     @Override
@@ -76,5 +83,15 @@ public class ConverterFacadeImpl implements ConverterFacade {
     @Override
     public AddTaskPatternConverter getAddTaskPatternConverter() {
         return addTaskPatternConverter;
+    }
+
+    @Override
+    public ProcessPatternConverter getProcessPatternConverter() {
+        return processPatternConverter;
+    }
+
+    @Override
+    public AddProcessPatternConverter getAddProcessPatternConverter() {
+        return addProcessPatternConverter;
     }
 }

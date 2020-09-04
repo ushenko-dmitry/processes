@@ -126,4 +126,37 @@
             </column>
         </createTable>
     </changeSet>
+    
+    <changeSet id="add_process_pattern_table" author="dimaushenko@mail.ru">
+        <createTable tableName="process_pattern">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="deleted" type="boolean"/>
+
+            <column name="created_by" type="int">
+                <constraints primaryKey="true" references="user(id)" foreignKeyName="FK_process_created_by_user"/>
+            </column>
+            <column name="date_created" type="TIMESTAMP"/>
+
+            <column name="updated_by" type="int">
+                <constraints nullable="true" references="user(id)" foreignKeyName="FK_process_updated_by_user"/>
+            </column>
+            <column name="date_updated" type="TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <addColumn tableName="task_pattern">
+            <column name="process_pattern_id" type="int">
+                <constraints references="process_pattern(id)" foreignKeyName="FK_task_pattern_process_pattern"/>
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

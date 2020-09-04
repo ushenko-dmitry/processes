@@ -17,4 +17,8 @@ public interface ConverterFacade {
     TaskPatternConverter getTaskPatternConverter();
 
     AddTaskPatternConverter getAddTaskPatternConverter();
+
+    ProcessPatternConverter getProcessPatternConverter();
+
+    AddProcessPatternConverter getAddProcessPatternConverter();
 }
