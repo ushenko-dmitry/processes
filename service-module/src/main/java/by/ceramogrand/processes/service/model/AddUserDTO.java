@@ -1,9 +1,12 @@
 package by.ceramogrand.processes.service.model;
 
+import by.ceramogrand.processes.service.enums.UserRoleEnumDTO;
+
 public class AddUserDTO {
 
-    String email;
-    String password;
+    private String email;
+    private String password;
+    private UserRoleEnumDTO role;
 
     public String getEmail() {
         return email;
@@ -19,6 +22,14 @@ public class AddUserDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public UserRoleEnumDTO getRole() {
+        return role;
+    }
+
+    public void setRole(UserRoleEnumDTO role) {
+        this.role = role;
     }
 
 }

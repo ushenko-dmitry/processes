@@ -1,7 +1,10 @@
 package by.ceramogrand.processes.repository.model;
 
-import javax.persistence.*;
+import by.ceramogrand.processes.repository.enums.UserRoleEnum;
 import java.io.Serializable;
+import java.util.Objects;
+import javax.persistence.*;
+import static javax.persistence.EnumType.STRING;
 
 @Entity
 @Table(name = "user")
@@ -10,11 +13,14 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(updatable = false, nullable = false)
-    Long id;
+    private Long id;
     @Column(nullable = false)
-    String email;
+    private String email;
     @Column(nullable = false)
-    String password;
+    private String password;
+    @Enumerated(STRING)
+    @Column(nullable = false)
+    private UserRoleEnum role;
 
     public Long getId() {
         return id;
@@ -38,6 +44,51 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public UserRoleEnum getRole() {
+        return role;
+    }
+
+    public void setRole(UserRoleEnum role) {
+        this.role = role;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.id);
+        hash = 67 * hash + Objects.hashCode(this.email);
+        hash = 67 * hash + Objects.hashCode(this.password);
+        hash = 67 * hash + Objects.hashCode(this.role);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final User other = (User) obj;
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        if (!Objects.equals(this.password, other.password)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (this.role != other.role) {
+            return false;
+        }
+        return true;
     }
 
 }

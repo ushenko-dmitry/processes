@@ -159,4 +159,12 @@
             </column>
         </addColumn>
     </changeSet>
+    
+    <changeSet id="add_role_to_user" author="dimaushenko@mail.ru">
+        <addColumn tableName="user">
+            <column name="role" type="varchar[50]">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
