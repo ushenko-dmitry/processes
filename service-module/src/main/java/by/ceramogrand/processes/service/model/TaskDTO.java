@@ -1,9 +1,8 @@
 package by.ceramogrand.processes.service.model;
 
-import by.ceramogrand.processes.repository.model.User;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class TaskDTO {
 
@@ -21,6 +20,7 @@ public class TaskDTO {
     private UserDTO createdBy;
     private LocalDate dateCreated;
     private UserDTO updatedBy;
+    private LocalDate dateUpdated;
 
     public Long getId() {
         return id;
@@ -110,7 +110,69 @@ public class TaskDTO {
         this.dateUpdated = dateUpdated;
     }
 
-    private LocalDate dateUpdated;
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.id);
+        hash = 89 * hash + Objects.hashCode(this.name);
+        hash = 89 * hash + Objects.hashCode(this.description);
+        hash = 89 * hash + Objects.hashCode(this.complete);
+        hash = 89 * hash + Objects.hashCode(this.completedBy);
+        hash = 89 * hash + Objects.hashCode(this.dateCompleted);
+        hash = 89 * hash + Objects.hashCode(this.deleted);
+        hash = 89 * hash + Objects.hashCode(this.createdBy);
+        hash = 89 * hash + Objects.hashCode(this.dateCreated);
+        hash = 89 * hash + Objects.hashCode(this.updatedBy);
+        hash = 89 * hash + Objects.hashCode(this.dateUpdated);
+        return hash;
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TaskDTO other = (TaskDTO) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.complete, other.complete)) {
+            return false;
+        }
+        if (!Objects.equals(this.completedBy, other.completedBy)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateCompleted, other.dateCompleted)) {
+            return false;
+        }
+        if (!Objects.equals(this.deleted, other.deleted)) {
+            return false;
+        }
+        if (!Objects.equals(this.createdBy, other.createdBy)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateCreated, other.dateCreated)) {
+            return false;
+        }
+        if (!Objects.equals(this.updatedBy, other.updatedBy)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateUpdated, other.dateUpdated)) {
+            return false;
+        }
+        return true;
+    }
 
 }

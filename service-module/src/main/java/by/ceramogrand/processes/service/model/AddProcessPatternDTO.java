@@ -3,6 +3,7 @@ package by.ceramogrand.processes.service.model;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class AddProcessPatternDTO {
 
@@ -13,10 +14,8 @@ public class AddProcessPatternDTO {
 
     private Boolean deleted;
 
-    private UserDTO createdBy;
+    private Long createdBy;
     private LocalDate dateCreated;
-    private UserDTO updatedBy;
-    private LocalDate dateUpdated;
 
     public String getName() {
         return name;
@@ -50,11 +49,11 @@ public class AddProcessPatternDTO {
         this.deleted = deleted;
     }
 
-    public UserDTO getCreatedBy() {
+    public Long getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(UserDTO createdBy) {
+    public void setCreatedBy(Long createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -66,19 +65,49 @@ public class AddProcessPatternDTO {
         this.dateCreated = dateCreated;
     }
 
-    public UserDTO getUpdatedBy() {
-        return updatedBy;
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 79 * hash + Objects.hashCode(this.name);
+        hash = 79 * hash + Objects.hashCode(this.description);
+        hash = 79 * hash + Objects.hashCode(this.taskPatternDTOs);
+        hash = 79 * hash + Objects.hashCode(this.deleted);
+        hash = 79 * hash + Objects.hashCode(this.createdBy);
+        hash = 79 * hash + Objects.hashCode(this.dateCreated);
+        return hash;
     }
 
-    public void setUpdatedBy(UserDTO updatedBy) {
-        this.updatedBy = updatedBy;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final AddProcessPatternDTO other = (AddProcessPatternDTO) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        if (!Objects.equals(this.taskPatternDTOs, other.taskPatternDTOs)) {
+            return false;
+        }
+        if (!Objects.equals(this.deleted, other.deleted)) {
+            return false;
+        }
+        if (!Objects.equals(this.createdBy, other.createdBy)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateCreated, other.dateCreated)) {
+            return false;
+        }
+        return true;
     }
 
-    public LocalDate getDateUpdated() {
-        return dateUpdated;
-    }
-
-    public void setDateUpdated(LocalDate dateUpdated) {
-        this.dateUpdated = dateUpdated;
-    }
 }

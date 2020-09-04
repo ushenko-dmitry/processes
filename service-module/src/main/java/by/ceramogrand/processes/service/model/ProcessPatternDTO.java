@@ -3,6 +3,7 @@ package by.ceramogrand.processes.service.model;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class ProcessPatternDTO {
 
@@ -91,4 +92,62 @@ public class ProcessPatternDTO {
     public void setDateUpdated(LocalDate dateUpdated) {
         this.dateUpdated = dateUpdated;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 61 * hash + Objects.hashCode(this.id);
+        hash = 61 * hash + Objects.hashCode(this.name);
+        hash = 61 * hash + Objects.hashCode(this.description);
+        hash = 61 * hash + Objects.hashCode(this.taskPatternDTOs);
+        hash = 61 * hash + Objects.hashCode(this.deleted);
+        hash = 61 * hash + Objects.hashCode(this.createdBy);
+        hash = 61 * hash + Objects.hashCode(this.dateCreated);
+        hash = 61 * hash + Objects.hashCode(this.updatedBy);
+        hash = 61 * hash + Objects.hashCode(this.dateUpdated);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ProcessPatternDTO other = (ProcessPatternDTO) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.taskPatternDTOs, other.taskPatternDTOs)) {
+            return false;
+        }
+        if (!Objects.equals(this.deleted, other.deleted)) {
+            return false;
+        }
+        if (!Objects.equals(this.createdBy, other.createdBy)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateCreated, other.dateCreated)) {
+            return false;
+        }
+        if (!Objects.equals(this.updatedBy, other.updatedBy)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateUpdated, other.dateUpdated)) {
+            return false;
+        }
+        return true;
+    }
+
 }

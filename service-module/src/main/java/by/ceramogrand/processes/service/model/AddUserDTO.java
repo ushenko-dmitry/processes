@@ -1,8 +1,7 @@
 package by.ceramogrand.processes.service.model;
 
-
 public class AddUserDTO {
-    
+
     String email;
     String password;
 
