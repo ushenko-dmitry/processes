@@ -44,7 +44,7 @@ public class TaskConverterImpl implements TaskConverter {
 
     @Override
     public Task getModel(TaskDTO taskDTO) {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -58,6 +58,6 @@ public class TaskConverterImpl implements TaskConverter {
 
     @Override
     public List<Task> getModels(List<TaskDTO> taskDTOS) {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

@@ -1,7 +1,5 @@
 package by.ceramogrand.processes.service.model;
 
-import by.ceramogrand.processes.repository.model.User;
-
 import java.time.LocalDate;
 
 public class AddTaskDTO {
