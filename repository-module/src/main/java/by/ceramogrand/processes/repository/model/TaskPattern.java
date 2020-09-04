@@ -1,12 +1,14 @@
 package by.ceramogrand.processes.repository.model;
 
-import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.Objects;
+import javax.persistence.*;
+import static javax.persistence.CascadeType.ALL;
 
 @Entity
-@Table(name = "task")
-public class Task {
+@Table(name = "task_pattern")
+public class TaskPattern implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,22 +21,14 @@ public class Task {
     private String description;
 
     @Column
-    private Boolean complete;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "completed_by", nullable = true)
-    private User completedBy;
-    @Column(name = "date_completed", nullable = true)
-    private LocalDateTime dateCompleted;
-
-    @Column
     private Boolean deleted;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = ALL)
     @JoinColumn(name = "created_by")
     private User createdBy;
     @Column(name = "date_created")
     private LocalDate dateCreated;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = ALL)
     @JoinColumn(name = "updated_by", nullable = true)
     private User updatedBy;
     @Column(name = "date_updated", nullable = true)
@@ -62,30 +56,6 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Boolean getComplete() {
-        return complete;
-    }
-
-    public void setComplete(Boolean complete) {
-        this.complete = complete;
-    }
-
-    public User getCompletedBy() {
-        return completedBy;
-    }
-
-    public void setCompletedBy(User completedBy) {
-        this.completedBy = completedBy;
-    }
-
-    public LocalDateTime getDateCompleted() {
-        return dateCompleted;
-    }
-
-    public void setDateCompleted(LocalDateTime dateCompleted) {
-        this.dateCompleted = dateCompleted;
     }
 
     public Boolean getDeleted() {
@@ -127,4 +97,58 @@ public class Task {
     public void setDateUpdated(LocalDate dateUpdated) {
         this.dateUpdated = dateUpdated;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + Objects.hashCode(this.id);
+        hash = 23 * hash + Objects.hashCode(this.name);
+        hash = 23 * hash + Objects.hashCode(this.description);
+        hash = 23 * hash + Objects.hashCode(this.deleted);
+        hash = 23 * hash + Objects.hashCode(this.createdBy);
+        hash = 23 * hash + Objects.hashCode(this.dateCreated);
+        hash = 23 * hash + Objects.hashCode(this.updatedBy);
+        hash = 23 * hash + Objects.hashCode(this.dateUpdated);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TaskPattern other = (TaskPattern) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.deleted, other.deleted)) {
+            return false;
+        }
+        if (!Objects.equals(this.createdBy, other.createdBy)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateCreated, other.dateCreated)) {
+            return false;
+        }
+        if (!Objects.equals(this.updatedBy, other.updatedBy)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateUpdated, other.dateUpdated)) {
+            return false;
+        }
+        return true;
+    }
+
 }

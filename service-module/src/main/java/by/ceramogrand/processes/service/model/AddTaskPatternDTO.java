@@ -1,15 +1,12 @@
 package by.ceramogrand.processes.service.model;
 
-import by.ceramogrand.processes.repository.model.User;
-
 import java.time.LocalDate;
+import java.util.Objects;
 
-public class AddTaskDTO {
+public class AddTaskPatternDTO {
 
     private String name;
     private String description;
-
-    private Boolean complete = false;
 
     private Boolean deleted = false;
 
@@ -30,14 +27,6 @@ public class AddTaskDTO {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Boolean getComplete() {
-        return complete;
-    }
-
-    public void setComplete(Boolean complete) {
-        this.complete = complete;
     }
 
     public Boolean getDeleted() {
@@ -63,4 +52,46 @@ public class AddTaskDTO {
     public void setDateCreated(LocalDate dateCreated) {
         this.dateCreated = dateCreated;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 83 * hash + Objects.hashCode(this.name);
+        hash = 83 * hash + Objects.hashCode(this.description);
+        hash = 83 * hash + Objects.hashCode(this.deleted);
+        hash = 83 * hash + Objects.hashCode(this.createdBy);
+        hash = 83 * hash + Objects.hashCode(this.dateCreated);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final AddTaskPatternDTO other = (AddTaskPatternDTO) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        if (!Objects.equals(this.deleted, other.deleted)) {
+            return false;
+        }
+        if (!Objects.equals(this.createdBy, other.createdBy)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateCreated, other.dateCreated)) {
+            return false;
+        }
+        return true;
+    }
+
 }

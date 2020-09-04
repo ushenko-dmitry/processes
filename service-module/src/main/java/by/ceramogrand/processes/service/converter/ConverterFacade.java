@@ -6,7 +6,6 @@ public interface ConverterFacade {
 
     AddUserConverter getAddUserConverter();
 
-
     TaskConverter getTaskConverter();
 
     AddTaskConverter getAddTaskConverter();
@@ -14,4 +13,8 @@ public interface ConverterFacade {
     ProcessConverter getProcessConverter();
 
     AddProcessConverter getAddProcessConverter();
+
+    TaskPatternConverter getTaskPatternConverter();
+
+    AddTaskPatternConverter getAddTaskPatternConverter();
 }
