@@ -20,6 +20,10 @@ public class TaskPattern implements Serializable {
     @Column
     private String description;
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "process_pattern_id")
+    private ProcessPattern processPattern;
+    
     @Column
     private Boolean deleted;
 
@@ -56,6 +60,14 @@ public class TaskPattern implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public ProcessPattern getProcessPattern() {
+        return processPattern;
+    }
+
+    public void setProcessPattern(ProcessPattern processPattern) {
+        this.processPattern = processPattern;
     }
 
     public Boolean getDeleted() {
@@ -105,6 +117,7 @@ public class TaskPattern implements Serializable {
         hash = 23 * hash + Objects.hashCode(this.name);
         hash = 23 * hash + Objects.hashCode(this.description);
         hash = 23 * hash + Objects.hashCode(this.deleted);
+        hash = 23 * hash + Objects.hashCode(this.processPattern);
         hash = 23 * hash + Objects.hashCode(this.createdBy);
         hash = 23 * hash + Objects.hashCode(this.dateCreated);
         hash = 23 * hash + Objects.hashCode(this.updatedBy);
@@ -131,6 +144,9 @@ public class TaskPattern implements Serializable {
             return false;
         }
         if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.processPattern, other.processPattern)) {
             return false;
         }
         if (!Objects.equals(this.deleted, other.deleted)) {
