@@ -114,12 +114,12 @@
             <column name="deleted" type="boolean"/>
 
             <column name="created_by" type="int">
-                <constraints primaryKey="true" references="user(id)" foreignKeyName="FK_task_created_by_user"/>
+                <constraints primaryKey="true" references="user(id)" foreignKeyName="FK_task_pattern_created_by_user"/>
             </column>
             <column name="date_created" type="TIMESTAMP"/>
 
             <column name="updated_by" type="int">
-                <constraints nullable="true" references="user(id)" foreignKeyName="FK_task_updated_by_user"/>
+                <constraints nullable="true" references="user(id)" foreignKeyName="FK_task_pattern_updated_by_user"/>
             </column>
             <column name="date_updated" type="TIMESTAMP">
                 <constraints nullable="true"/>
@@ -142,12 +142,12 @@
             <column name="deleted" type="boolean"/>
 
             <column name="created_by" type="int">
-                <constraints primaryKey="true" references="user(id)" foreignKeyName="FK_process_created_by_user"/>
+                <constraints primaryKey="true" references="user(id)" foreignKeyName="FK_process_pattern_created_by_user"/>
             </column>
             <column name="date_created" type="TIMESTAMP"/>
 
             <column name="updated_by" type="int">
-                <constraints nullable="true" references="user(id)" foreignKeyName="FK_process_updated_by_user"/>
+                <constraints nullable="true" references="user(id)" foreignKeyName="FK_process_pattern_updated_by_user"/>
             </column>
             <column name="date_updated" type="TIMESTAMP">
                 <constraints nullable="true"/>
@@ -162,8 +162,8 @@
     
     <changeSet id="add_role_to_user" author="dimaushenko@mail.ru">
         <addColumn tableName="user">
-            <column name="role" type="varchar[50]">
-                <constraints nullable="false"/>
+            <column name="role" type="varchar(50)">
+                <constraints nullable="true"/>
             </column>
         </addColumn>
     </changeSet>
