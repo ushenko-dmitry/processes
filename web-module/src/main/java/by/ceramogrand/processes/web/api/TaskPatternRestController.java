@@ -8,7 +8,6 @@ import by.ceramogrand.processes.service.model.TaskPatternDTO;
 import by.ceramogrand.processes.service.model.UserDTO;
 import java.time.LocalDate;
 import java.util.List;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -70,7 +69,11 @@ public class TaskPatternRestController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity softDeleteTaskPattern(@PathVariable Long id) {
-        return taskPatternService.softDeleteTaskPattern(id);
+    public TaskPatternDTO softDeleteTaskPattern(
+            @PathVariable Long id,
+            Authentication authentication) {
+        AppUser appUser = (AppUser) authentication.getPrincipal();
+        UserDTO user = userService.getUserByEmail(appUser.getUsername());
+        return taskPatternService.softDeleteTaskPattern(id, user);
     }
 }

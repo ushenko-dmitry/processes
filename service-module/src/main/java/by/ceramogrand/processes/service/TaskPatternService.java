@@ -2,8 +2,8 @@ package by.ceramogrand.processes.service;
 
 import by.ceramogrand.processes.service.model.AddTaskPatternDTO;
 import by.ceramogrand.processes.service.model.TaskPatternDTO;
+import by.ceramogrand.processes.service.model.UserDTO;
 import java.util.List;
-import org.springframework.http.ResponseEntity;
 
 public interface TaskPatternService {
 
@@ -15,6 +15,6 @@ public interface TaskPatternService {
 
     public TaskPatternDTO updateTaskPattern(Long id, TaskPatternDTO taskPatternDTO);
 
-    public ResponseEntity softDeleteTaskPattern(Long id);
+    public TaskPatternDTO softDeleteTaskPattern(Long id, UserDTO userDTO);
 
 }

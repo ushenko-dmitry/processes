@@ -11,8 +11,8 @@ import by.ceramogrand.processes.service.converter.TaskPatternConverter;
 import by.ceramogrand.processes.service.model.AddTaskPatternDTO;
 import by.ceramogrand.processes.service.model.TaskPatternDTO;
 import by.ceramogrand.processes.service.model.UserDTO;
+import java.time.LocalDate;
 import java.util.List;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -75,8 +75,16 @@ public class TaskPatternServiceImpl implements TaskPatternService {
     }
 
     @Override
-    public ResponseEntity softDeleteTaskPattern(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public TaskPatternDTO softDeleteTaskPattern(Long id, UserDTO userDTO) {
+        TaskPattern taskPattern = taskPatternRepository.findById(id);
+        taskPattern.setDeleted(true);
+
+        User updatedBy = userRepository.findById(userDTO.getId());
+        taskPattern.setUpdatedBy(updatedBy);
+        taskPattern.setDateUpdated(LocalDate.now());
+
+        TaskPatternConverter taskPatternConverter = converterFacade.getTaskPatternConverter();
+        return taskPatternConverter.getDTO(taskPattern);
     }
 
 }
