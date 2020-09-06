@@ -12,7 +12,7 @@ public class AddProcessDTO {
 
     private List<TaskDTO> tasks = Collections.emptyList();
 
-    private Boolean deleted;
+    private Boolean deleted = false;
 
     private Boolean completed = false;
 

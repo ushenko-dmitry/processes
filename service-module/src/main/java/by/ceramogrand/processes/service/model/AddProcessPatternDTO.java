@@ -8,7 +8,7 @@ public class AddProcessPatternDTO {
     private String name;
     private String description;
 
-    private Boolean deleted;
+    private Boolean deleted = false;
 
     private Long createdBy;
     private LocalDate dateCreated;
