@@ -1,10 +1,15 @@
 package by.ceramogrand.processes.web.api;
 
 import by.ceramogrand.processes.service.TaskPatternService;
+import by.ceramogrand.processes.service.UserService;
 import by.ceramogrand.processes.service.model.AddTaskPatternDTO;
+import by.ceramogrand.processes.service.model.AppUser;
 import by.ceramogrand.processes.service.model.TaskPatternDTO;
+import by.ceramogrand.processes.service.model.UserDTO;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,9 +24,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class TaskPatternRestController {
 
     private final TaskPatternService taskPatternService;
+    private final UserService userService;
 
-    public TaskPatternRestController(TaskPatternService taskPatternService) {
+    public TaskPatternRestController(
+            TaskPatternService taskPatternService,
+            UserService userService
+    ) {
         this.taskPatternService = taskPatternService;
+        this.userService = userService;
     }
 
     @GetMapping
@@ -36,8 +46,13 @@ public class TaskPatternRestController {
 
     @PostMapping
     public TaskPatternDTO createTaskPattern(
-            @RequestBody AddTaskPatternDTO addTaskPatternDTO
+            @RequestBody AddTaskPatternDTO addTaskPatternDTO,
+            Authentication authentication
     ) {
+        AppUser appUser = (AppUser) authentication.getPrincipal();
+        UserDTO user = userService.getUserByEmail(appUser.getUsername());
+        addTaskPatternDTO.setCreatedBy(user.getId());
+        addTaskPatternDTO.setDateCreated(LocalDate.now());
         return taskPatternService.createTaskPattern(addTaskPatternDTO);
     }
 

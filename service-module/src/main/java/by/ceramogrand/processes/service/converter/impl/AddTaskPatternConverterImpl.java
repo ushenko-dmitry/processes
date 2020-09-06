@@ -15,8 +15,13 @@ public class AddTaskPatternConverterImpl implements AddTaskPatternConverter {
     }
 
     @Override
-    public TaskPattern getModel(AddTaskPatternDTO dto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public TaskPattern getModel(AddTaskPatternDTO addTaskPatternDTO) {
+        TaskPattern taskPattern = new TaskPattern();
+        taskPattern.setName(addTaskPatternDTO.getName());
+        taskPattern.setDescription(addTaskPatternDTO.getDescription());
+        taskPattern.setDeleted(addTaskPatternDTO.getDeleted());
+        taskPattern.setDateCreated(addTaskPatternDTO.getDateCreated());
+        return taskPattern;
     }
 
     @Override

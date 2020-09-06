@@ -19,7 +19,7 @@ public class Task implements Serializable {
     @Column
     private String description;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "process_id")
     private Process process;
 

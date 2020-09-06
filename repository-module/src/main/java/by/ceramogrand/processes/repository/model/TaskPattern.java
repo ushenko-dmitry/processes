@@ -20,7 +20,7 @@ public class TaskPattern implements Serializable {
     @Column
     private String description;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "process_pattern_id")
     private ProcessPattern processPattern;
     
