@@ -1,16 +1,12 @@
 package by.ceramogrand.processes.service.model;
 
 import java.time.LocalDate;
-import java.util.Collections;
-import java.util.List;
 import java.util.Objects;
 
 public class AddProcessPatternDTO {
 
     private String name;
     private String description;
-
-    private List<TaskPatternDTO> taskPatternDTOs = Collections.emptyList();
 
     private Boolean deleted;
 
@@ -31,14 +27,6 @@ public class AddProcessPatternDTO {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public List<TaskPatternDTO> getTasks() {
-        return taskPatternDTOs;
-    }
-
-    public void setTasks(List<TaskPatternDTO> tasks) {
-        this.taskPatternDTOs = tasks;
     }
 
     public Boolean getDeleted() {
@@ -70,7 +58,6 @@ public class AddProcessPatternDTO {
         int hash = 5;
         hash = 79 * hash + Objects.hashCode(this.name);
         hash = 79 * hash + Objects.hashCode(this.description);
-        hash = 79 * hash + Objects.hashCode(this.taskPatternDTOs);
         hash = 79 * hash + Objects.hashCode(this.deleted);
         hash = 79 * hash + Objects.hashCode(this.createdBy);
         hash = 79 * hash + Objects.hashCode(this.dateCreated);
@@ -93,9 +80,6 @@ public class AddProcessPatternDTO {
             return false;
         }
         if (!Objects.equals(this.description, other.description)) {
-            return false;
-        }
-        if (!Objects.equals(this.taskPatternDTOs, other.taskPatternDTOs)) {
             return false;
         }
         if (!Objects.equals(this.deleted, other.deleted)) {

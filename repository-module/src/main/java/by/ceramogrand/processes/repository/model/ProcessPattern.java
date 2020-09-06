@@ -21,6 +21,7 @@ public class ProcessPattern implements Serializable {
     private String description;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "process_pattern_id")
     private List<TaskPattern> taskPattrens = new ArrayList<>();
 
     @Column

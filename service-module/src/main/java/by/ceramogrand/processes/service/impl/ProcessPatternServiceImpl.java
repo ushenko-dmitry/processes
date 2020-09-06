@@ -3,7 +3,9 @@ package by.ceramogrand.processes.service.impl;
 import by.ceramogrand.processes.repository.ProcessPatternRepository;
 import by.ceramogrand.processes.repository.UserRepository;
 import by.ceramogrand.processes.repository.model.ProcessPattern;
+import by.ceramogrand.processes.repository.model.User;
 import by.ceramogrand.processes.service.ProcessPatternService;
+import by.ceramogrand.processes.service.converter.AddProcessPatternConverter;
 import by.ceramogrand.processes.service.converter.ConverterFacade;
 import by.ceramogrand.processes.service.converter.ProcessPatternConverter;
 import by.ceramogrand.processes.service.model.AddProcessPatternDTO;
@@ -43,7 +45,13 @@ public class ProcessPatternServiceImpl implements ProcessPatternService {
 
     @Override
     public ProcessPatternDTO createProcessPattern(AddProcessPatternDTO addProcessPatternDTO) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        AddProcessPatternConverter addProcessPatternConverter = converterFacade.getAddProcessPatternConverter();
+        ProcessPattern processPattern = addProcessPatternConverter.getModel(addProcessPatternDTO);
+        User createdBy = userRepository.findById(addProcessPatternDTO.getCreatedBy());
+        processPattern.setCreatedBy(createdBy);
+        processPatternRepository.persist(processPattern);
+        ProcessPatternConverter processPatternConverter = converterFacade.getProcessPatternConverter();
+        return processPatternConverter.getDTO(processPattern);
     }
 
     @Override
