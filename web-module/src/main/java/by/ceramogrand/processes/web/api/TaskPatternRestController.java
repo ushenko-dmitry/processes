@@ -59,8 +59,13 @@ public class TaskPatternRestController {
     @PutMapping("/{id}")
     public TaskPatternDTO updateTaskPattern(
             @PathVariable Long id,
-            @RequestBody TaskPatternDTO taskPatternDTO
+            @RequestBody TaskPatternDTO taskPatternDTO,
+            Authentication authentication
     ) {
+        AppUser appUser = (AppUser) authentication.getPrincipal();
+        UserDTO user = userService.getUserByEmail(appUser.getUsername());
+        taskPatternDTO.setUpdatedBy(user);
+        taskPatternDTO.setDateUpdated(LocalDate.now());
         return taskPatternService.updateTaskPattern(id, taskPatternDTO);
     }
 

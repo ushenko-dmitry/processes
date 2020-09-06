@@ -10,6 +10,7 @@ import by.ceramogrand.processes.service.converter.ConverterFacade;
 import by.ceramogrand.processes.service.converter.TaskPatternConverter;
 import by.ceramogrand.processes.service.model.AddTaskPatternDTO;
 import by.ceramogrand.processes.service.model.TaskPatternDTO;
+import by.ceramogrand.processes.service.model.UserDTO;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -60,7 +61,17 @@ public class TaskPatternServiceImpl implements TaskPatternService {
 
     @Override
     public TaskPatternDTO updateTaskPattern(Long id, TaskPatternDTO taskPatternDTO) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TaskPattern taskPattern = taskPatternRepository.findById(id);
+        taskPattern.setName(taskPatternDTO.getName());
+        taskPattern.setDescription(taskPatternDTO.getDescription());
+
+        UserDTO updatedByDTO = taskPatternDTO.getUpdatedBy();
+        User updatedBy = userRepository.findById(updatedByDTO.getId());
+        taskPattern.setUpdatedBy(updatedBy);
+        taskPattern.setDateUpdated(taskPatternDTO.getDateUpdated());
+
+        TaskPatternConverter taskPatternConverter = converterFacade.getTaskPatternConverter();
+        return taskPatternConverter.getDTO(taskPattern);
     }
 
     @Override
