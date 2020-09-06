@@ -8,6 +8,8 @@ public class AddTaskPatternDTO {
     private String name;
     private String description;
 
+    private Long processPatternId;
+
     private Boolean deleted = false;
 
     private Long createdBy;
@@ -27,6 +29,14 @@ public class AddTaskPatternDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Long getProcessPatternId() {
+        return processPatternId;
+    }
+
+    public void setProcessPatternId(Long processPatternId) {
+        this.processPatternId = processPatternId;
     }
 
     public Boolean getDeleted() {
@@ -58,6 +68,7 @@ public class AddTaskPatternDTO {
         int hash = 5;
         hash = 83 * hash + Objects.hashCode(this.name);
         hash = 83 * hash + Objects.hashCode(this.description);
+        hash = 83 * hash + Objects.hashCode(this.processPatternId);
         hash = 83 * hash + Objects.hashCode(this.deleted);
         hash = 83 * hash + Objects.hashCode(this.createdBy);
         hash = 83 * hash + Objects.hashCode(this.dateCreated);
@@ -80,6 +91,9 @@ public class AddTaskPatternDTO {
             return false;
         }
         if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        if (!Objects.equals(this.processPatternId, other.processPatternId)) {
             return false;
         }
         if (!Objects.equals(this.deleted, other.deleted)) {

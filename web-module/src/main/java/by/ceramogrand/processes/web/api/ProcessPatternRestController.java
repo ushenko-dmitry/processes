@@ -4,8 +4,10 @@ import by.ceramogrand.processes.service.ProcessPatternService;
 import by.ceramogrand.processes.service.TaskPatternService;
 import by.ceramogrand.processes.service.UserService;
 import by.ceramogrand.processes.service.model.AddProcessPatternDTO;
+import by.ceramogrand.processes.service.model.AddTaskPatternDTO;
 import by.ceramogrand.processes.service.model.AppUser;
 import by.ceramogrand.processes.service.model.ProcessPatternDTO;
+import by.ceramogrand.processes.service.model.TaskPatternDTO;
 import by.ceramogrand.processes.service.model.UserDTO;
 import java.time.LocalDate;
 import java.util.List;
@@ -71,5 +73,26 @@ public class ProcessPatternRestController {
     @DeleteMapping("/{id}")
     public ResponseEntity softDeleteProcessPattern(@PathVariable Long id) {
         return processPatternService.softDeleteProcessPattern(id);
+    }
+
+    @GetMapping("/{id}/taskPatterns")
+    public List<TaskPatternDTO> getTaskPatterns(@PathVariable Long id) {
+        ProcessPatternDTO processPattern = processPatternService.getProcessPattern(id);
+        List<TaskPatternDTO> tasks = processPattern.getTasks();
+        return tasks;
+    }
+
+    @PostMapping("{id}/taskPatterns")
+    public TaskPatternDTO addTaskPatternToTaskProcess(
+            @PathVariable Long id,
+            @RequestBody AddTaskPatternDTO addTaskPatternDTO,
+            Authentication authentication
+    ) {
+        addTaskPatternDTO.setProcessPatternId(id);
+        AppUser appUser = (AppUser) authentication.getPrincipal();
+        UserDTO user = userService.getUserByEmail(appUser.getUsername());
+        addTaskPatternDTO.setCreatedBy(user.getId());
+        addTaskPatternDTO.setDateCreated(LocalDate.now());
+        return processPatternService.addTaskPattern(addTaskPatternDTO);
     }
 }
