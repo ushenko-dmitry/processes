@@ -18,7 +18,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <simple-xml.version>2.7.1</simple-xml.version>
     </properties>
 
     <dependencies>
@@ -38,22 +37,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- MAIL -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mail</artifactId>
-        </dependency>
         <!-- REPOSITORY -->
         <dependency>
             <groupId>by.ceramogrand.processes</groupId>
             <artifactId>repository-module</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <!-- XML Parser -->
-        <dependency>
-            <groupId>org.simpleframework</groupId>
-            <artifactId>simple-xml</artifactId>
-            <version>${simple-xml.version}</version>
         </dependency>
     </dependencies>
 </project>

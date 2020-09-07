@@ -1,12 +1,14 @@
 package by.ceramogrand.processes.service.model;
 
+import by.ceramogrand.processes.service.enums.UserRoleEnumDTO;
 import java.util.Objects;
 
 public class UserDTO {
 
-    Long id;
-    String email;
-    String password;
+    private Long id;
+    private String email;
+    private String password;
+    private UserRoleEnumDTO role;
 
     public Long getId() {
         return id;
@@ -31,6 +33,26 @@ public class UserDTO {
     public void setPassword(String password) {
         this.password = password;
     }
+  
+  public UserRoleEnumDTO getRole() {
+        return role;
+    }
+
+    public void setRole(UserRoleEnumDTO role) {
+        this.role = role;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, email, password);
+    }
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.id);
+        hash = 53 * hash + Objects.hashCode(this.email);
+        hash = 53 * hash + Objects.hashCode(this.password);
+        hash = 53 * hash + Objects.hashCode(this.role);
+        return hash;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -40,10 +62,8 @@ public class UserDTO {
         return Objects.equals(id, userDTO.id) &&
                 Objects.equals(email, userDTO.email) &&
                 Objects.equals(password, userDTO.password);
+    public UserRoleEnumDTO getRole() {
+        return role;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, email, password);
-    }
 }

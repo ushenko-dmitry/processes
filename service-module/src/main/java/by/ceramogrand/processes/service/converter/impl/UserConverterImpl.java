@@ -1,15 +1,23 @@
 package by.ceramogrand.processes.service.converter.impl;
 
+import by.ceramogrand.processes.repository.enums.UserRoleEnum;
 import by.ceramogrand.processes.repository.model.User;
 import by.ceramogrand.processes.service.converter.UserConverter;
+import by.ceramogrand.processes.service.converter.UserRoleConverter;
+import by.ceramogrand.processes.service.enums.UserRoleEnumDTO;
 import by.ceramogrand.processes.service.model.UserDTO;
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
 @Component
 public class UserConverterImpl implements UserConverter {
+
+    private final UserRoleConverter userRoleConverter;
+
+    public UserConverterImpl(UserRoleConverter userRoleConverter) {
+        this.userRoleConverter = userRoleConverter;
+    }
 
     @Override
     public UserDTO getDTO(User user) {
@@ -18,6 +26,8 @@ public class UserConverterImpl implements UserConverter {
         userDTO.setId(user.getId());
         userDTO.setEmail(user.getEmail());
         userDTO.setPassword(user.getPassword());
+        UserRoleEnumDTO userDTORole = userRoleConverter.getDTO(user.getRole());
+        userDTO.setRole(userDTORole);
         return userDTO;
     }
 
@@ -28,6 +38,8 @@ public class UserConverterImpl implements UserConverter {
         user.setId(userDTO.getId());
         user.setEmail(userDTO.getEmail());
         user.setPassword(userDTO.getPassword());
+        UserRoleEnum userRole = userRoleConverter.getModel(userDTO.getRole());
+        user.setRole(userRole);
         return user;
     }
 

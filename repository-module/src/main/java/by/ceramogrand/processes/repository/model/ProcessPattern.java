@@ -2,12 +2,13 @@ package by.ceramogrand.processes.repository.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "task")
-public class Task implements Serializable {
+@Table(name = "process_pattern")
+public class ProcessPattern implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,30 +20,22 @@ public class Task implements Serializable {
     @Column
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "process_id")
-    private Process process;
-
-    @Column
-    private Boolean complete;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "completed_by", nullable = true)
-    private User completedBy;
-    @Column(name = "date_completed", nullable = true)
-    private LocalDateTime dateCompleted;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "process_pattern_id")
+    private List<TaskPattern> taskPattrens = new ArrayList<>();
 
     @Column
     private Boolean deleted;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "created_by")
     private User createdBy;
     @Column(name = "date_created")
     private LocalDate dateCreated;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "updated_by", nullable = true)
     private User updatedBy;
-    @Column(name = "date_updated", nullable = true)
+    @Column(name = "date_updated")
     private LocalDate dateUpdated;
 
     public Long getId() {
@@ -69,36 +62,12 @@ public class Task implements Serializable {
         this.description = description;
     }
 
-    public Process getProcess() {
-        return process;
+    public List<TaskPattern> getTasks() {
+        return taskPattrens;
     }
 
-    public void setProcess(Process process) {
-        this.process = process;
-    }
-
-    public Boolean getComplete() {
-        return complete;
-    }
-
-    public void setComplete(Boolean complete) {
-        this.complete = complete;
-    }
-
-    public User getCompletedBy() {
-        return completedBy;
-    }
-
-    public void setCompletedBy(User completedBy) {
-        this.completedBy = completedBy;
-    }
-
-    public LocalDateTime getDateCompleted() {
-        return dateCompleted;
-    }
-
-    public void setDateCompleted(LocalDateTime dateCompleted) {
-        this.dateCompleted = dateCompleted;
+    public void setTasks(List<TaskPattern> tasks) {
+        this.taskPattrens = tasks;
     }
 
     public Boolean getDeleted() {

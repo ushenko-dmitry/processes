@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 	  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <changeSet id="1" author="dimaushenko@mail.ru">
@@ -95,6 +95,75 @@
         <addColumn tableName="task">
             <column name="process_id" type="int">
                 <constraints references="process(id)" foreignKeyName="FK_task_process"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet id="add_task_pattern" author="dimaushenko@mail.ru">
+        <createTable tableName="task_pattern">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="deleted" type="boolean"/>
+
+            <column name="created_by" type="int">
+                <constraints primaryKey="true" references="user(id)" foreignKeyName="FK_task_pattern_created_by_user"/>
+            </column>
+            <column name="date_created" type="TIMESTAMP"/>
+
+            <column name="updated_by" type="int">
+                <constraints nullable="true" references="user(id)" foreignKeyName="FK_task_pattern_updated_by_user"/>
+            </column>
+            <column name="date_updated" type="TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="add_process_pattern_table" author="dimaushenko@mail.ru">
+        <createTable tableName="process_pattern">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="deleted" type="boolean"/>
+
+            <column name="created_by" type="int">
+                <constraints primaryKey="true" references="user(id)" foreignKeyName="FK_process_pattern_created_by_user"/>
+            </column>
+            <column name="date_created" type="TIMESTAMP"/>
+
+            <column name="updated_by" type="int">
+                <constraints nullable="true" references="user(id)" foreignKeyName="FK_process_pattern_updated_by_user"/>
+            </column>
+            <column name="date_updated" type="TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <addColumn tableName="task_pattern">
+            <column name="process_pattern_id" type="int">
+                <constraints references="process_pattern(id)" foreignKeyName="FK_task_pattern_process_pattern"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet id="add_role_to_user" author="dimaushenko@mail.ru">
+        <addColumn tableName="user">
+            <column name="role" type="varchar(50)">
+                <constraints nullable="true"/>
             </column>
         </addColumn>
     </changeSet>

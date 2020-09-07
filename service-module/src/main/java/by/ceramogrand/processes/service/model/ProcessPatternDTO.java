@@ -5,19 +5,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class ProcessDTO {
+public class ProcessPatternDTO {
 
     private Long id;
 
     private String name;
     private String description;
 
-    private List<TaskDTO> tasks = Collections.emptyList();
+    private List<TaskPatternDTO> taskPatternDTOs = Collections.emptyList();
 
     private Boolean deleted;
-
-    private Boolean completed;
-    private LocalDate dateCompleted;
 
     private UserDTO createdBy;
     private LocalDate dateCreated;
@@ -48,12 +45,12 @@ public class ProcessDTO {
         this.description = description;
     }
 
-    public List<TaskDTO> getTasks() {
-        return tasks;
+    public List<TaskPatternDTO> getTasks() {
+        return taskPatternDTOs;
     }
 
-    public void setTasks(List<TaskDTO> tasks) {
-        this.tasks = tasks;
+    public void setTasks(List<TaskPatternDTO> tasks) {
+        this.taskPatternDTOs = tasks;
     }
 
     public Boolean getDeleted() {
@@ -62,22 +59,6 @@ public class ProcessDTO {
 
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
-    }
-
-    public Boolean getCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(Boolean completed) {
-        this.completed = completed;
-    }
-
-    public LocalDate getDateCompleted() {
-        return dateCompleted;
-    }
-
-    public void setDateCompleted(LocalDate dateCompleted) {
-        this.dateCompleted = dateCompleted;
     }
 
     public UserDTO getCreatedBy() {
@@ -114,18 +95,16 @@ public class ProcessDTO {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 79 * hash + Objects.hashCode(this.id);
-        hash = 79 * hash + Objects.hashCode(this.name);
-        hash = 79 * hash + Objects.hashCode(this.description);
-        hash = 79 * hash + Objects.hashCode(this.tasks);
-        hash = 79 * hash + Objects.hashCode(this.deleted);
-        hash = 79 * hash + Objects.hashCode(this.completed);
-        hash = 79 * hash + Objects.hashCode(this.dateCompleted);
-        hash = 79 * hash + Objects.hashCode(this.createdBy);
-        hash = 79 * hash + Objects.hashCode(this.dateCreated);
-        hash = 79 * hash + Objects.hashCode(this.updatedBy);
-        hash = 79 * hash + Objects.hashCode(this.dateUpdated);
+        int hash = 3;
+        hash = 61 * hash + Objects.hashCode(this.id);
+        hash = 61 * hash + Objects.hashCode(this.name);
+        hash = 61 * hash + Objects.hashCode(this.description);
+        hash = 61 * hash + Objects.hashCode(this.taskPatternDTOs);
+        hash = 61 * hash + Objects.hashCode(this.deleted);
+        hash = 61 * hash + Objects.hashCode(this.createdBy);
+        hash = 61 * hash + Objects.hashCode(this.dateCreated);
+        hash = 61 * hash + Objects.hashCode(this.updatedBy);
+        hash = 61 * hash + Objects.hashCode(this.dateUpdated);
         return hash;
     }
 
@@ -140,7 +119,7 @@ public class ProcessDTO {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final ProcessDTO other = (ProcessDTO) obj;
+        final ProcessPatternDTO other = (ProcessPatternDTO) obj;
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
@@ -150,16 +129,10 @@ public class ProcessDTO {
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-        if (!Objects.equals(this.tasks, other.tasks)) {
+        if (!Objects.equals(this.taskPatternDTOs, other.taskPatternDTOs)) {
             return false;
         }
         if (!Objects.equals(this.deleted, other.deleted)) {
-            return false;
-        }
-        if (!Objects.equals(this.completed, other.completed)) {
-            return false;
-        }
-        if (!Objects.equals(this.dateCompleted, other.dateCompleted)) {
             return false;
         }
         if (!Objects.equals(this.createdBy, other.createdBy)) {

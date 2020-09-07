@@ -1,6 +1,7 @@
 package by.ceramogrand.processes.service.model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class AddTaskDTO {
 
@@ -61,4 +62,50 @@ public class AddTaskDTO {
     public void setDateCreated(LocalDate dateCreated) {
         this.dateCreated = dateCreated;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.name);
+        hash = 67 * hash + Objects.hashCode(this.description);
+        hash = 67 * hash + Objects.hashCode(this.complete);
+        hash = 67 * hash + Objects.hashCode(this.deleted);
+        hash = 67 * hash + Objects.hashCode(this.createdBy);
+        hash = 67 * hash + Objects.hashCode(this.dateCreated);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final AddTaskDTO other = (AddTaskDTO) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        if (!Objects.equals(this.complete, other.complete)) {
+            return false;
+        }
+        if (!Objects.equals(this.deleted, other.deleted)) {
+            return false;
+        }
+        if (!Objects.equals(this.createdBy, other.createdBy)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateCreated, other.dateCreated)) {
+            return false;
+        }
+        return true;
+    }
+
 }
