@@ -33,8 +33,8 @@ public class UserDTO {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public UserRoleEnumDTO getRole() {
+  
+  public UserRoleEnumDTO getRole() {
         return role;
     }
 
@@ -44,6 +44,8 @@ public class UserDTO {
 
     @Override
     public int hashCode() {
+        return Objects.hash(id, email, password);
+    }
         int hash = 7;
         hash = 53 * hash + Objects.hashCode(this.id);
         hash = 53 * hash + Objects.hashCode(this.email);
@@ -53,30 +55,15 @@ public class UserDTO {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final UserDTO other = (UserDTO) obj;
-        if (!Objects.equals(this.email, other.email)) {
-            return false;
-        }
-        if (!Objects.equals(this.password, other.password)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.role, other.role)) {
-            return false;
-        }
-        return true;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserDTO userDTO = (UserDTO) o;
+        return Objects.equals(id, userDTO.id) &&
+                Objects.equals(email, userDTO.email) &&
+                Objects.equals(password, userDTO.password);
+    public UserRoleEnumDTO getRole() {
+        return role;
     }
 
 }

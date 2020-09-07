@@ -12,21 +12,21 @@ public class ProcessConverterImpl implements ProcessConverter {
 
     @Override
     public ProcessDTO getDTO(Process process) {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public Process getModel(ProcessDTO processDTO) {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public List<ProcessDTO> getDTOs(List<Process> processes) {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public List<Process> getModels(List<ProcessDTO> processDTOS) {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

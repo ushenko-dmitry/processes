@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class TaskPatternRepositoryImpl extends GenericRepositoryImpl<Long, TaskPattern> implements TaskPatternRepository {
-
 }

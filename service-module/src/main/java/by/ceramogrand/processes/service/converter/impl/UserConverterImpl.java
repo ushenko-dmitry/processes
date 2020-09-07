@@ -33,6 +33,7 @@ public class UserConverterImpl implements UserConverter {
 
     @Override
     public User getModel(UserDTO userDTO) {
+        if (userDTO == null) return null;
         User user = new User();
         user.setId(userDTO.getId());
         user.setEmail(userDTO.getEmail());

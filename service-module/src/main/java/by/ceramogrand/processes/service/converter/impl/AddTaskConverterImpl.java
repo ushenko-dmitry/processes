@@ -12,7 +12,7 @@ public class AddTaskConverterImpl implements AddTaskConverter {
 
     @Override
     public AddTaskDTO getDTO(Task task) {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -31,11 +31,11 @@ public class AddTaskConverterImpl implements AddTaskConverter {
 
     @Override
     public List<AddTaskDTO> getDTOs(List<Task> tasks) {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public List<Task> getModels(List<AddTaskDTO> addTaskDTOS) {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

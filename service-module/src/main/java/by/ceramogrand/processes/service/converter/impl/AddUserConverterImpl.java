@@ -25,7 +25,7 @@ public class AddUserConverterImpl implements AddUserConverter {
 
     @Override
     public AddUserDTO getDTO(User user) {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -40,11 +40,11 @@ public class AddUserConverterImpl implements AddUserConverter {
 
     @Override
     public List<AddUserDTO> getDTOs(List<User> users) {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public List<User> getModels(List<AddUserDTO> addUserDTOS) {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

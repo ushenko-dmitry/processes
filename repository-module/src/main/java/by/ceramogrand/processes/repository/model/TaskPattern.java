@@ -32,7 +32,8 @@ public class TaskPattern implements Serializable {
     private User createdBy;
     @Column(name = "date_created")
     private LocalDate dateCreated;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = ALL)
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "updated_by", nullable = true)
     private User updatedBy;
     @Column(name = "date_updated", nullable = true)
@@ -166,5 +167,5 @@ public class TaskPattern implements Serializable {
         }
         return true;
     }
-
+  
 }
