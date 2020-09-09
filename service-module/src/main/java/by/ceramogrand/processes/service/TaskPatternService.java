@@ -17,4 +17,5 @@ public interface TaskPatternService {
 
     public TaskPatternDTO softDeleteTaskPattern(Long id, UserDTO userDTO);
 
+    List<TaskPatternDTO> getTaskPatternsArchived();
 }

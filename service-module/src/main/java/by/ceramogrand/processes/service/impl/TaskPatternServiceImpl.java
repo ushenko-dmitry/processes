@@ -87,4 +87,11 @@ public class TaskPatternServiceImpl implements TaskPatternService {
         return taskPatternConverter.getDTO(taskPattern);
     }
 
+    @Override
+    public List<TaskPatternDTO> getTaskPatternsArchived() {
+        List<TaskPattern> taskPatterns = taskPatternRepository.findAllArchived();
+        TaskPatternConverter taskPatternConverter = converterFacade.getTaskPatternConverter();
+        return taskPatternConverter.getDTOs(taskPatterns);
+    }
+
 }
