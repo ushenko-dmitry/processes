@@ -21,13 +21,14 @@ public class Process implements Serializable {
     private String description;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "process_id")
     private List<Task> tasks = new ArrayList<>();
 
     @Column
     private Boolean deleted;
 
     @Column
-    private Boolean completed;
+    private Boolean complete;
     @Column(name = "date_completed")
     private LocalDate dateCompleted;
 
@@ -82,12 +83,12 @@ public class Process implements Serializable {
         this.deleted = deleted;
     }
 
-    public Boolean getCompleted() {
-        return completed;
+    public Boolean getComplete() {
+        return complete;
     }
 
-    public void setCompleted(Boolean completed) {
-        this.completed = completed;
+    public void setComplete(Boolean completed) {
+        this.complete = completed;
     }
 
     public LocalDate getDateCompleted() {
