@@ -1,10 +1,10 @@
 package by.ceramogrand.processes.repository.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.*;
 
 @Entity
 @Table(name = "process_pattern")

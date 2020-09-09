@@ -1,9 +1,10 @@
 package by.ceramogrand.processes.repository.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
-import javax.persistence.*;
+
 import static javax.persistence.CascadeType.ALL;
 
 @Entity
