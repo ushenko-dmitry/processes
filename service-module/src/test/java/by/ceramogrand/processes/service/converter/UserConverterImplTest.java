@@ -7,6 +7,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
@@ -19,10 +20,12 @@ import static by.ceramogrand.processes.service.model.UserUtil.getValidUserDTO;
 public class UserConverterImplTest {
 
     private UserConverter userConverter;
+    @Mock
+    private UserRoleConverter userRoleConverter;
 
     @Before
     public void setup() {
-        userConverter = new UserConverterImpl();
+        userConverter = new UserConverterImpl(userRoleConverter);
     }
 
     @Test
