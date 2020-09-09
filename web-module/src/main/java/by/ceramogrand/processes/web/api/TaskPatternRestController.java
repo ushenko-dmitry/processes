@@ -38,6 +38,11 @@ public class TaskPatternRestController {
         return taskPatternService.getTaskPatterns();
     }
 
+    @GetMapping("/archived")
+    public List<TaskPatternDTO> getTaskPatternsArchived() {
+        return taskPatternService.getTaskPatternsArchived();
+    }
+
     @GetMapping("/{id}")
     public TaskPatternDTO getTaskPattern(@PathVariable Long id) {
         return taskPatternService.getTaskPattern(id);
